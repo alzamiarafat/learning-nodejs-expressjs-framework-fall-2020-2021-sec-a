@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Job</title>
+</head>
+<body>
+	<form method="post">
+		<fieldset>
+			<legend>Edit Job</legend>
+			<table>
+				<tr>
+					<td>Company Name</td>
+					<td><input type="text" name="com_name" value="<%=user_edit[0].company_name%>"></td>
+				</tr>
+				<tr>
+					<td>Job Title</td>
+					<td><input type="text" name="job_title" value="<%=user_edit[0].job_title%>"></td>
+				</tr>
+				<tr>
+					<td>Job Location</td>
+					<td><input type="text" name="job_loc" value="<%=user_edit[0].job_location%>"></td>
+				</tr>
+
+				<tr>
+					<td>Salary</td>
+					<td><input type="text" name="salary" value="<%=user_edit[0].salary%>"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" name="submit" value="Submit"></td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+</body>
+</html>
