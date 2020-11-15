@@ -61,4 +61,65 @@ router.post('/profile/:username', (req, res)=>{
 	});
 });
 
+router.get('/userlist', (req, res)=>{
+	
+	userModel.getAll(function(results){
+		res.render('admin_home/userlist', {users: results});
+	});
+
+});
+
+router.get('/create', (req, res)=>{
+	
+		res.render('admin_home/create');
+
+
+});
+
+router.post('/create', (req, res)=>{
+	
+
+		
+	var user = {
+		name: req.body.name,
+		username: req.body.username,
+		password: req.body.password,
+		dob: req.body.dob,
+		type: req.body.type,
+		address: req.body.address,
+		contact: req.body.contact,
+		email: req.body.email
+	};
+
+	userModel.insert(user, function(status){
+		
+		res.redirect('userlist');
+	});
+
+
+});
+
+router.get('/delete/:username', (req, res)=>{
+	
+	var user = {username: req.params.username};
+	
+	userModel.getById(user, function(status){
+		res.render('admin_home/delete', {user_delete: status});
+		
+	});
+	
+});
+
+router.post('/delete/:username', (req, res)=>{
+	var user = {username: req.params.username};
+	userModel.delete(user, function(status){
+		
+		if(status == false){
+			res.redirect('/admin_home/userlist');
+
+		}
+		
+	});
+});
+
 module.exports = router;
