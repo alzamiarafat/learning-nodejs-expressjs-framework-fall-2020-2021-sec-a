@@ -22,11 +22,11 @@ router.post('/', (req, res)=>{
 	/*console.log(user);*/
 	userModel.insert(user, function(status){
 		/*console.log('status');*/
-		var success = {
+		/*var success = {
 			msg: "Registration is Complete."
 		};
 		var myJSON = JSON.stringify(success);
-		console.log(myJSON);
+		console.log(myJSON);*/
 		res.redirect('/login');
 	});
 	

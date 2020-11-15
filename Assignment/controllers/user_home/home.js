@@ -16,4 +16,14 @@ router.get('/', (req, res)=>{
 	
 });
 
+router.get('/profile', (req, res)=>{
+
+	var uname = {username: req.cookies.uname };
+	
+	userModel.getById(uname, function(results){
+		res.render('user_home/profile', {profile: results});
+	});
+
+});
+
 module.exports = router;

@@ -41,7 +41,7 @@ module.exports= {
 		});
 	},
 	update:function(id,user_update, callback){
-		var sql = "UPDATE users SET name='"+user_update.name+"', username='"+user_update.username+"',password='"+user_update.password+"',company_name='"+user_update.com_name+"',contact='"+user_update.contact+"' WHERE username='"+id.username+"'";
+		var sql = "UPDATE users SET name='"+user_update.name+"', username='"+user_update.username+"',password='"+user_update.password+"',dob='"+user_update.dob+"',address='"+user_update.address+"',contact='"+user_update.contact+"', email='"+user_update.email+"' WHERE username='"+id.username+"'";
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
 				callback(true);

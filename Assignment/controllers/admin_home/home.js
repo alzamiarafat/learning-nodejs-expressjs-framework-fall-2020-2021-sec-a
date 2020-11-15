@@ -15,5 +15,48 @@ router.get('/', (req, res)=>{
 	res.render('admin_home/index', {uname: req.cookies.uname });
 	
 });
+router.get('/profile', (req, res)=>{
+
+	var uname = {username: req.cookies.uname };
+	
+	userModel.getById(uname, function(results){
+		res.render('admin_home/profile', {profile: results});
+	});
+
+});
+router.get('/profile/:username', (req, res)=>{
+
+	var user = {username: req.params.username};
+	userModel.getById(user, function(status){
+		res.render('admin_home/edit_profile', {user_edit: status});
+		
+	});
+
+});
+
+router.post('/profile/:username', (req, res)=>{
+	var user = {username: req.params.username};
+
+	var user_update = {
+		name: req.body.name,
+		username: req.body.username,
+		password: req.body.password,
+		dob: req.body.dob,
+		address: req.body.address,
+		contact: req.body.contact,
+		email: req.body.email
+
+	};
+
+	userModel.update(user,user_update, function(status){
+		//console.log(status);
+		
+		if(status == false){
+			res.redirect('/admin_home/profile');
+
+		}
+		
+	});
+});
 
 module.exports = router;
