@@ -42,21 +42,20 @@
 					<td>Email</td>
 					<td><%=profile[0].email%></td>
 				</tr>
-				
-				<tr>
-					<td>Image</td>
-					<td><input type="file" name="file_up">
-						<input type="submit" name="submit" value="Upload"></td>
-					<td></td>
-				</tr>
+		
 				<tr>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
+			<br>
+			<br>
+			<button><a href="profile/<%= profile[0].username %>">Edit</a></button>
 		</fieldset>
-	<a href="/scout_home">Back</a>
-	<a href="/logout">Logout</a> 
+		<br>
+		<br>
+		<button><a href="/scout_home">Back   </a></button>
+			<button><a href="/logout">Logout</a> </button>
 
 </body>
 </html>

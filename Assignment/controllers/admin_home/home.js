@@ -20,10 +20,12 @@ router.get('/profile', (req, res)=>{
 	var uname = {username: req.cookies.uname };
 	
 	userModel.getById(uname, function(results){
+
 		res.render('admin_home/profile', {profile: results});
 	});
 
 });
+
 router.get('/profile/:username', (req, res)=>{
 
 	var user = {username: req.params.username};
@@ -52,7 +54,7 @@ router.post('/profile/:username', (req, res)=>{
 		//console.log(status);
 		
 		if(status == false){
-			res.redirect('/admin_home/profile');
+			res.redirect('/scout_home/profile');
 
 		}
 		
