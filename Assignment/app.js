@@ -4,6 +4,7 @@ const exSession 		= require('express-session');
 const cookieParser 		= require('cookie-parser');
 
 const login				= require('./controllers/login');
+const register			= require('./controllers/register');
 const admin_home		= require('./controllers/admin_home/home');
 const scout_home		= require('./controllers/scout_home/home');
 const user_home			= require('./controllers/user_home/home');
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use(exSession({secret: 'secret value', saveUninitialized: true, resave: false}));
 
 app.use('/login', login);
+app.use('/register', register);
 app.use('/home', home);
 app.use('/admin_home', admin_home);
 app.use('/scout_home', scout_home);

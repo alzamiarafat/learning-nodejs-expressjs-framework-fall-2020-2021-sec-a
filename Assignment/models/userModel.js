@@ -22,14 +22,9 @@ module.exports= {
 			callback(results);
 		});
 	},
-	/*getAll: function(callback){
-		var sql = "select * from job";
-		db.getResults(sql, function(results){
-			callback(results);
-		});
-	},*/
+	
 	insert: function(user_create, callback){
-		var sql = "INSERT INTO users(name, username, password, status, company_name, contact) VALUES ('"+user_create.name+"' ,'"+user_create.username+"', '"+user_create.password+"', 'employee', '"+user_create.com_name+"', '"+user_create.contact+"')";
+		var sql = "INSERT INTO users(name, username, password, dob, type, address,contact,email) VALUES ('"+user_create.name+"' ,'"+user_create.username+"', '"+user_create.password+"', '"+user_create.dob+"', '"+user_create.type+"', '"+user_create.address+"', '"+user_create.contact+"', '"+user_create.email+"')";
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
 				callback(true);
@@ -44,17 +39,6 @@ module.exports= {
 		db.getResults(sql, (results) => {
 			callback(results);
 		});
-	},
-	insert_job: function(uname,job_create, callback){
-		var sql = "INSERT INTO job(username,company_name, job_title, job_location, salary) VALUES ('"+uname.username+"' ,'"+job_create.com_name+"', '"+job_create.job_title+"', '"+job_create.job_location+"', '"+job_create.salary+"')";
-		db.getResults(sql, function(results){
-			if(results.length >0 ){
-				callback(true);
-			}else{
-				callback(false);
-			}
-		});
-
 	},
 	update:function(id,user_update, callback){
 		var sql = "UPDATE users SET name='"+user_update.name+"', username='"+user_update.username+"',password='"+user_update.password+"',company_name='"+user_update.com_name+"',contact='"+user_update.contact+"' WHERE username='"+id.username+"'";
