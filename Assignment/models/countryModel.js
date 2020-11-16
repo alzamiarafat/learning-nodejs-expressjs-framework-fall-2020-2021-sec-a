@@ -38,8 +38,8 @@ module.exports= {
 		});
 
 	},
-	delete: function(id, callback){
-		var sql = "DELETE FROM users WHERE username='"+id.username+"'";
+	delete: function(country_name, callback){
+		var sql = "DELETE FROM place WHERE country='"+country_name.country+"'";
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
 				callback(true);

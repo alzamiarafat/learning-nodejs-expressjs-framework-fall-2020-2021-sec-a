@@ -31,7 +31,7 @@ router.post('/add_country', (req, res)=>{
 	};
 
 	countryModel.insert(country, function(status){
-		res.redirect('/country_list');
+		res.redirect('/country/country_list');
 	});
 
 
@@ -79,7 +79,6 @@ router.post('/edit/:country', (req, res)=>{
 	};
 
 	countryModel.update(country,country_update, function(status){
-		console.log(status);
 		
 		if(status == false){
 			res.redirect('/country/country_list');
@@ -90,28 +89,28 @@ router.post('/edit/:country', (req, res)=>{
 });
 
 
-
-/*router.get('/delete/:username', (req, res)=>{
+router.get('/delete/:country', (req, res)=>{
 	
-	var user = {username: req.params.username};
+	var country = {c_name: req.params.country};
 	
-	userModel.getById(user, function(status){
-		res.render('admin_home/delete', {user_delete: status});
+	countryModel.getById(country, function(status){
+	
+		res.render('country/delete', {place_delete: status});
 		
 	});
 	
 });
 
-router.post('/delete/:username', (req, res)=>{
-	var user = {username: req.params.username};
-	userModel.delete(user, function(status){
+router.post('/delete/:country', (req, res)=>{
+	var country = {country: req.params.country};
+	countryModel.delete(country, function(status){
 		
 		if(status == false){
-			res.redirect('/admin_home/userlist');
+			res.redirect('/country/country_list');
 
 		}
 		
 	});
-});*/
+});
 
 module.exports = router;
