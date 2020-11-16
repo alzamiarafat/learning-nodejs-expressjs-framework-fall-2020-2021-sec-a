@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Country List</title>
+</head>
+<body>
+	<h1> Country List</h1>
+
+	
+
+	<table border="1">
+		<tr>
+			<td>Country</td>
+			<td>Travel Agency</td>
+			<td>Cost</td>
+			<td>Contact</td>
+			<td>Action</td>
+
+
+		</tr>
+
+		<% 
+			countries.forEach( function(cont){ %>
+			<tr>
+				<td><%= cont.country %></td>
+				<td><%= cont.travel_agency %></td>
+				<td><%= cont.cost %></td>
+				<td><%= cont.contact %></td>
+
+				<td>
+					<a href="/admin_home/edit/<%= cont.username %>">Details</a> |
+					<a href="/admin_home/edit/<%= cont.username %>">Edit</a> |
+					<a href="/admin_home/delete/<%= cont.username %>">Delete</a>
+				</td>
+			</tr>
+
+		<%
+			}); 
+		%>
+		
+	</table>
+	<br>
+	<button><a href="/admin_home">Back</a></button>
+	<button><a href="/logout">logout</a> </button>
+	
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create User</title>
+</head>
+<body>
+	<form method="post">
+		<fieldset>
+			
+			<legend>Add Country</legend>
+			<table>
+				<tr>
+					<td>UserName</td>
+					<td><input type="text" name="username" value="<%= uname %>" readonly></td>
+				</tr>
+				<tr>
+					<td>Country Name</td>
+					<td><input type="text" name="country"></td>
+				</tr>
+				<tr>
+					<td>History and Culture</td>
+					<td><textarea name="history" rows="6" cols="50">
+					</textarea></td>
+				</tr>
+				<tr>
+					<td>About</td>
+					<td><textarea name="about" rows="10" cols="50">
+					</textarea></td>
+				</tr>
+				<tr>
+					<td>Travel Agency</td>
+					<td><input type="text" name="trevel_agent"></td>
+				</tr>
+				<tr>
+					<td>Cost</td>
+					<td><input type="number" name="cost"></td>
+				</tr>
+				<tr>
+					<td>Contact</td>
+					<td><input type="number" name="contact"></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td><input type="submit" name="submit" value="Submit"></td>
+				</tr>
+			</table>
+		</fieldset>
+		<a href="/admin_home">Back</a>
+
+	</form>
+	
+</body>
+</html>

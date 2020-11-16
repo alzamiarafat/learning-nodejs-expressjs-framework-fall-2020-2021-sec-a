@@ -77,8 +77,6 @@ router.get('/create', (req, res)=>{
 });
 
 router.post('/create', (req, res)=>{
-	
-
 		
 	var user = {
 		name: req.body.name,
