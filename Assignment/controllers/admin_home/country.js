@@ -73,7 +73,7 @@ router.post('/edit/:country', (req, res)=>{
 		country: req.body.country,
 		history: req.body.history,
 		about: req.body.about,
-		trevel_agent: req.body.trevel_agent,
+		travel_agency: req.body.travel_agency,
 		cost: req.body.cost,
 		contact: req.body.contact
 	};

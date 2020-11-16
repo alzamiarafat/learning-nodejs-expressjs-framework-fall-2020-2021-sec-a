@@ -28,7 +28,7 @@ module.exports= {
 	},
 	
 	update:function(country,country_update, callback){
-		var sql = "UPDATE `place` SET `history`='"+country_update.history+"',`about`='"+country_update.about+"',`travel_agency`='"+country_update.trevel_agent+"',`cost`='"+country_update.cost+"',`contact`='"+country_update.contact+"' WHERE country='"+country.c_name+"'";
+		var sql = "UPDATE `place` SET `country`='"+country_update.country+"', `history`='"+country_update.history+"',`about`='"+country_update.about+"',`travel_agency`='"+country_update.travel_agency+"',`cost`='"+country_update.cost+"',`contact`='"+country_update.contact+"' WHERE country='"+country.c_name+"'";
 		db.getResults(sql, function(results){
 			if(results.length > 0 ){
 				callback(results);
