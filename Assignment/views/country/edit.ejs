@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Place</title>
+</head>
+<body>
+	<form method="post">
+		<fieldset>
+			<legend>Edit Place</legend>
+			<table>
+				<tr>
+					<td>Country</td>
+					<td><input type="text" name="country" value="<%=place_edit[0].country%>"></td>
+				</tr>
+				<tr>
+					<td>History And Culture</td>
+					<td><textarea name="history" rows="6" cols="50"><%=place_edit[0].history%></textarea></td>
+				</tr>
+				<tr>
+					<td>About</td>
+					<td><textarea name="about" rows="10" cols="50"><%=place_edit[0].about%></textarea></td>
+				</tr>
+
+				<tr>
+					<td>Travel Agency</td>
+					<td><input type="text" name="travel_agent" value="<%=place_edit[0].travel_agency%>"></td>
+				</tr>
+				<tr>
+					<td>Cost</td>
+					<td><input type="number" name="cost" value="<%=place_edit[0].cost%>"></td>
+				</tr>
+				<tr>
+					<td>Contact</td>
+					<td><input type="number" name="contact" value="<%=place_edit[0].contact%>"></td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td><input type="submit" name="submit" value="Submit"></td>
+				</tr>
+			</table>
+			
+		</fieldset>
+		<br>
+		<br>
+		<button><a href="/country/country_list">Back</a></button>
+		<button><a href="/logout">Logout</a> </button>
+	</form>
+</body>
+</html>

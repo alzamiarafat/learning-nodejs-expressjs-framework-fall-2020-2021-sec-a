@@ -45,4 +45,73 @@ router.get('/country_list', (req, res)=>{
 
 });
 
+router.get('/details/:country', (req, res)=>{
+	
+	var country = {c_name: req.params.country};
+	
+	countryModel.getById(country, function(status){
+		res.render('country/details', {details: status});
+		
+	});
+	
+});
+
+router.get('/edit/:country', (req, res)=>{
+
+	var country = {c_name: req.params.country};
+	
+	countryModel.getById(country, function(status){
+		res.render('country/edit', {place_edit: status});
+		
+	});
+});
+
+router.post('/edit/:country', (req, res)=>{
+	var country = {c_name: req.params.country};
+
+	var country_update = {
+		country: req.body.country,
+		history: req.body.history,
+		about: req.body.about,
+		trevel_agent: req.body.trevel_agent,
+		cost: req.body.cost,
+		contact: req.body.contact
+	};
+
+	countryModel.update(country,country_update, function(status){
+		console.log(status);
+		
+		if(status == false){
+			res.redirect('/country/country_list');
+
+		}
+		
+	});
+});
+
+
+
+/*router.get('/delete/:username', (req, res)=>{
+	
+	var user = {username: req.params.username};
+	
+	userModel.getById(user, function(status){
+		res.render('admin_home/delete', {user_delete: status});
+		
+	});
+	
+});
+
+router.post('/delete/:username', (req, res)=>{
+	var user = {username: req.params.username};
+	userModel.delete(user, function(status){
+		
+		if(status == false){
+			res.redirect('/admin_home/userlist');
+
+		}
+		
+	});
+});*/
+
 module.exports = router;
