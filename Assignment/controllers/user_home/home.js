@@ -21,7 +21,7 @@ router.get('/profile', (req, res)=>{
 	var uname = {username: req.cookies.uname };
 	
 	userModel.getById(uname, function(results){
-		res.render('user_home/profile', {profile: results});
+		res.render('users_profile/profile', {profile: results});
 	});
 
 });
@@ -30,7 +30,7 @@ router.get('/profile/:username', (req, res)=>{
 
 	var user = {username: req.params.username};
 	userModel.getById(user, function(status){
-		res.render('user_home/edit_profile', {user_edit: status});
+		res.render('users_profile/edit_profile', {user_edit: status});
 		
 	});
 

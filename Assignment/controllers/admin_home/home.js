@@ -21,16 +21,16 @@ router.get('/profile', (req, res)=>{
 	
 	userModel.getById(uname, function(results){
 
-		res.render('admin_home/profile', {profile: results});
+		res.render('users_profile/profile', {profile: results});
 	});
 
 });
 
 router.get('/profile/:username', (req, res)=>{
 
-	var user = {username: req.params.username};
+	var user = {username: req.cookies.uname };
 	userModel.getById(user, function(status){
-		res.render('admin_home/edit_profile', {user_edit: status});
+		res.render('users_profile/edit_profile', {user_edit: status});
 		
 	});
 
@@ -54,7 +54,7 @@ router.post('/profile/:username', (req, res)=>{
 		//console.log(status);
 		
 		if(status == false){
-			res.redirect('/scout_home/profile');
+			res.redirect('/admin_home/profile');
 
 		}
 		
@@ -113,6 +113,38 @@ router.get('/delete/:username', (req, res)=>{
 router.post('/delete/:username', (req, res)=>{
 	var user = {username: req.params.username};
 	userModel.delete(user, function(status){
+		
+		if(status == false){
+			res.redirect('/admin_home/userlist');
+
+		}
+		
+	});
+});
+
+router.get('/edit/:username', (req, res)=>{
+
+	var user = {username: req.params.username};
+	userModel.getById(user, function(status){
+		console.log(status);
+		res.render('admin_home/edit', {user_edit: status});
+		
+	});
+});
+
+router.post('/edit/:username', (req, res)=>{
+	var user = {username: req.params.username};
+
+	var user_update = {
+		name: req.body.name,
+		username: req.body.username,
+		password: req.body.password,
+		com_name: req.body.company_name,
+		contact: req.body.contact
+	};
+
+	userModel.update(user,user_update, function(status){
+		//console.log(status);
 		
 		if(status == false){
 			res.redirect('/admin_home/userlist');
