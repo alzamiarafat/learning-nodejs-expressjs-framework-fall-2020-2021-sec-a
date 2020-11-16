@@ -1,5 +1,6 @@
 const express 	= require('express');
 const userModel = require.main.require('./models/userModel');
+const countryModel	= require.main.require('./models/countryModel');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
@@ -11,8 +12,12 @@ router.get('*',  (req, res, next)=>{
 });
 
 router.get('/', (req, res)=>{
-	//var uname = req.cookies['uname'];
-	res.render('user_home/index', {uname: req.cookies.uname });
+
+	countryModel.getAll(function(results){
+		res.render('user_home/index', {uname: req.cookies.uname, places: results});
+	});
+
+	/*res.render('user_home/index', {uname: req.cookies.uname });*/
 	
 });
 

@@ -4,14 +4,58 @@
 	<title>Home page</title>
 	<link rel="stylesheet" type="text/css" href="/abc/css/style.css">
 </head>
-<body>
-	<h1> Welcome, <%= uname %></h1>
 
-	
-	<br>
+<style>
+	fieldset {
+  		background-color: #eeeeee;
+  		width: 500px;
+	}
+</style>
+
+<body>
+	<h1> Welcome, <%= uname %></h1><br>
 
 	<a href="/user_home/profile">Profile</a>  |
-	<a href="/logout">logout</a> 
+	<a href="/logout">logout</a> <br><br>
+
+	<%
+	 	places.forEach( function(count){ %>
+ 			<fieldset>
+				<table>
+					<tr>
+						<td>Country Name</td>
+						<td></td>
+						<td><%= count.country %></td>
+					</tr>
+
+					<tr>
+						<td>Travel Agency</td>
+						<td></td>
+						<td><%= count.travel_agency %></td>
+					</tr>
+
+					<tr>
+						<td>Cost</td>
+						<td></td>
+						<td><%= count.cost %></td>
+					</tr>
+
+					<tr>
+						<td>Contact</td>
+						<td></td>
+						<td><%= count.contact %></td>
+					</tr>
+
+					<tr>
+						<td></td>
+						<td><a href="/country/details/<%= count.country %>">Details..</a></td>
+					</tr>
+				</table>
+			</fieldset>
+			<br>
+		<%
+			}); 
+		%>		
 
 </body>
 </html>

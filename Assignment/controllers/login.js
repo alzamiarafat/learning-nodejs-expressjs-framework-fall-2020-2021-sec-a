@@ -1,5 +1,6 @@
 const express 		= require('express');
 const userModel		= require.main.require('./models/userModel');
+
 const router 		= express.Router();
 
 router.get('/', (req, res)=>{
@@ -25,6 +26,10 @@ router.post('/', (req, res)=>{
 		}
 		else if(status == "user"){
 			res.cookie('uname', req.body.username);
+			
+			/*countryModel.getAll(function(results){
+				res.redirect('/user_home', {countries: results});
+			});*/
 			res.redirect('/user_home');
 		}
 
