@@ -1,5 +1,7 @@
 const express 	= require('express');
 const userModel = require.main.require('./models/userModel');
+const place_reqModel = require.main.require('./models/place_reqModel');
+
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
@@ -59,6 +61,38 @@ router.post('/profile/:username', (req, res)=>{
 		}
 		
 	});
+});
+
+router.get('/place_req', (req, res)=>{
+
+	res.render('scout_home/place_req', {uname: req.cookies.uname });
+		
+});
+router.post('/place_req', (req, res)=>{
+
+	var place_req = { 
+		recevier: req.body.recevier,
+		sender: req.body.username,
+		country: req.body.country,
+		history: req.body.history,
+		about: req.body.about,
+		travel_agency: req.body.travel_agency,
+		cost: req.body.cost,
+		contact: req.body.contact
+
+	};
+	place_reqModel.insert(place_req, function(status){
+
+     console.log('done');
+		
+	});
+
+
+	/*console.log(place_req);
+	res.json({
+            place_request: place_req
+        });*/
+		
 });
 
 module.exports = router;

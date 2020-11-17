@@ -1,5 +1,6 @@
 const express 	= require('express');
 const userModel = require.main.require('./models/userModel');
+const place_reqModel = require.main.require('./models/place_reqModel');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
@@ -12,7 +13,11 @@ router.get('*',  (req, res, next)=>{
 
 router.get('/', (req, res)=>{
 	//var uname = req.cookies['uname'];
-	res.render('admin_home/index', {uname: req.cookies.uname });
+	place_reqModel.count(function(results){
+		
+		res.render('admin_home/index', {uname: req.cookies.uname, results });
+
+	});
 	
 });
 router.get('/profile', (req, res)=>{
