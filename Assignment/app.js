@@ -18,7 +18,7 @@ const app				= express();
 const port				= 8000;
 
 app.set('view engine', 'ejs');
-
+app.use('/abc', express.static('assets'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(exSession({secret: 'secret value', saveUninitialized: true, resave: false}));
