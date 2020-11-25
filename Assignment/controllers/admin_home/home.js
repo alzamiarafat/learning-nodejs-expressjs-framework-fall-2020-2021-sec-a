@@ -4,7 +4,7 @@ const place_reqModel = require.main.require('./models/place_reqModel');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
-	if(req.cookies['uname'] == null){
+	if(req.session.user == null){
 		res.redirect('/login');
 	}else{
 		next();
@@ -12,10 +12,11 @@ router.get('*',  (req, res, next)=>{
 });
 
 router.get('/', (req, res)=>{
-	//var uname = req.cookies['uname'];
-	place_reqModel.count(function(results){
+	var user = req.session.user;
+	place_reqModel.count(user,function(results){
+		console.log(results.length);
 		
-		res.render('admin_home/index', {uname: req.cookies.uname, results });
+		res.render('admin_home/index',{user: req.session.user, reqst: results.length});
 
 	});
 	
@@ -69,6 +70,7 @@ router.post('/profile/:username', (req, res)=>{
 router.get('/userlist', (req, res)=>{
 	
 	userModel.getAll(function(results){
+		console.log(results);
 		res.render('admin_home/userlist', {users: results});
 	});
 
@@ -142,8 +144,10 @@ router.post('/edit/:username', (req, res)=>{
 		name: req.body.name,
 		username: req.body.username,
 		password: req.body.password,
-		com_name: req.body.company_name,
-		contact: req.body.contact
+		dob: req.body.dob,
+		address: req.body.address,
+		contact: req.body.contact,
+		email: req.body.email
 	};
 
 	userModel.update(user,user_update, function(status){

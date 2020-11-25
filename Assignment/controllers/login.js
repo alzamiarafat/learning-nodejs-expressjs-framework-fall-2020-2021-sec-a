@@ -16,16 +16,24 @@ router.post('/', (req, res)=>{
 	};
 
 		userModel.validate(user, function(status){
-		if(status == "admin"){
-			res.cookie('uname', req.body.username);
+			req.session.user = {
+                name 		: status[0].name,
+                username  	: status[0].username,
+                password  	: status[0].password,
+                dob        	: status[0].dob,
+                email     	: status[0].email,
+                contact   	: status[0].contact,
+                address   	: status[0].address,
+                type 		: status[0].type
+            };
+
+		if(status[0].type == "admin"){
 			res.redirect('/admin_home');
 		}
-		else if(status == "scout"){
-			res.cookie('uname', req.body.username);
+		else if(status[0].type == "scout"){
 			res.redirect('/scout_home');
 		}
-		else if(status == "user"){
-			res.cookie('uname', req.body.username);
+		else if(status[0].type == "user"){
 			
 			/*countryModel.getAll(function(results){
 				res.redirect('/user_home', {countries: results});
@@ -39,5 +47,6 @@ router.post('/', (req, res)=>{
 	});
 	
 }); 
+
 
 module.exports = router;

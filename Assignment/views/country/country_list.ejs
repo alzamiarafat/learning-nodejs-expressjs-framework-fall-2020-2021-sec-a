@@ -11,26 +11,26 @@
 	<table border="1">
 		<tr>
 			<td>Country</td>
+			<td>Place</td>
 			<td>Travel Agency</td>
 			<td>Cost</td>
 			<td>Contact</td>
 			<td>Action</td>
-
-
 		</tr>
 
 		<% 
 			countries.forEach( function(cont){ %>
 			<tr>
 				<td><%= cont.country %></td>
+				<td><%= cont.place %></td>
 				<td><%= cont.travel_agency %></td>
 				<td><%= cont.cost %></td>
 				<td><%= cont.contact %></td>
 
 				<td>
-					<a href="/country/details/<%= cont.country %>">Details</a> |
-					<a href="/country/edit/<%= cont.country %>">Edit</a> |
-					<a href="/country/delete/<%= cont.country %>">Delete</a>
+					<a href="/country/details/<%= cont.place %>">Details</a> |
+					<a href="/country/edit/<%= cont.place %>">Edit</a> |
+					<a href="/country/delete/<%= cont.place %>">Delete</a>
 				</td>
 			</tr>
 

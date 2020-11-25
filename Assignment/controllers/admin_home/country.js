@@ -20,8 +20,8 @@ router.post('/add_country', (req, res)=>{
 		
 	var country = {
 		username: req.body.username,
-		customer_name: req.body.customer_name,
 		country: req.body.country,
+		place: req.body.place,
 		history: req.body.history,
 		about: req.body.about,
 		trevel_agent: req.body.trevel_agent,
@@ -30,6 +30,7 @@ router.post('/add_country', (req, res)=>{
 	};
 
 	countryModel.insert(country, function(status){
+		console.log(status);
 		res.redirect('/country/country_list');
 	});
 
@@ -44,32 +45,33 @@ router.get('/country_list', (req, res)=>{
 
 });
 
-router.get('/details/:country', (req, res)=>{
+router.get('/details/:place', (req, res)=>{
 	
-	var country = {c_name: req.params.country};
+	var place = {c_name: req.params.place};
 	
-	countryModel.getById(country, function(status){
+	countryModel.getById(place, function(status){
 		res.render('country/details', {details: status});
 		
 	});
 	
 });
 
-router.get('/edit/:country', (req, res)=>{
+router.get('/edit/:place', (req, res)=>{
 
-	var country = {c_name: req.params.country};
+	var place = {c_name: req.params.place};
 	
-	countryModel.getById(country, function(status){
+	countryModel.getById(place, function(status){
 		res.render('country/edit', {place_edit: status});
 		
 	});
 });
 
-router.post('/edit/:country', (req, res)=>{
-	var country = {c_name: req.params.country};
+router.post('/edit/:place', (req, res)=>{
+	var place = {c_name: req.params.place};
 
 	var country_update = {
 		country: req.body.country,
+		place: req.body.place,
 		history: req.body.history,
 		about: req.body.about,
 		travel_agency: req.body.travel_agency,
@@ -77,7 +79,7 @@ router.post('/edit/:country', (req, res)=>{
 		contact: req.body.contact
 	};
 
-	countryModel.update(country,country_update, function(status){
+	countryModel.update(place,country_update, function(status){
 		
 		if(status == false){
 			res.redirect('/country/country_list');
@@ -88,11 +90,11 @@ router.post('/edit/:country', (req, res)=>{
 });
 
 
-router.get('/delete/:country', (req, res)=>{
+router.get('/delete/:place', (req, res)=>{
 	
-	var country = {c_name: req.params.country};
+	var place = {c_name: req.params.place};
 	
-	countryModel.getById(country, function(status){
+	countryModel.getById(place, function(status){
 	
 		res.render('country/delete', {place_delete: status});
 		
@@ -100,9 +102,9 @@ router.get('/delete/:country', (req, res)=>{
 	
 });
 
-router.post('/delete/:country', (req, res)=>{
-	var country = {country: req.params.country};
-	countryModel.delete(country, function(status){
+router.post('/delete/:place', (req, res)=>{
+	var place = {place: req.params.place};
+	countryModel.delete(place, function(status){
 		
 		if(status == false){
 			res.redirect('/country/country_list');
