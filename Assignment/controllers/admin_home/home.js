@@ -14,7 +14,6 @@ router.get('*',  (req, res, next)=>{
 router.get('/', (req, res)=>{
 	var user = req.session.user;
 	place_reqModel.count(user,function(results){
-		console.log(results.length);
 		
 		res.render('admin_home/index',{user: req.session.user, reqst: results.length});
 
@@ -23,7 +22,7 @@ router.get('/', (req, res)=>{
 });
 router.get('/profile', (req, res)=>{
 
-	var uname = {username: req.cookies.uname };
+	var uname = req.session.user;
 	
 	userModel.getById(uname, function(results){
 
@@ -34,7 +33,7 @@ router.get('/profile', (req, res)=>{
 
 router.get('/profile/:username', (req, res)=>{
 
-	var user = {username: req.cookies.uname };
+	var user = req.session.user;
 	userModel.getById(user, function(status){
 		res.render('users_profile/edit_profile', {user_edit: status});
 		
@@ -70,7 +69,6 @@ router.post('/profile/:username', (req, res)=>{
 router.get('/userlist', (req, res)=>{
 	
 	userModel.getAll(function(results){
-		console.log(results);
 		res.render('admin_home/userlist', {users: results});
 	});
 
@@ -159,6 +157,16 @@ router.post('/edit/:username', (req, res)=>{
 		}
 		
 	});
+});
+
+router.get('/notification', (req, res)=>{
+	var user = req.session.user;
+	place_reqModel.count(user,function(results){
+		
+		res.render('admin_home/notification',{reqst: results});
+
+	});
+
 });
 
 module.exports = router;

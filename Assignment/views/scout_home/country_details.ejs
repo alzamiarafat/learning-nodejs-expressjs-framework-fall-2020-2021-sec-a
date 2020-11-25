@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Country Details</title>
+	<link rel="stylesheet" type="text/css" href="/abc/css/style.css">
+</head>
+<body>
+	<form method="post">
+		<fieldset>
+			<legend><h2>Country Details</h2></legend>
+			<table>
+				<tr>
+					<td>Country</td>
+					<td><%=details[0].country%></td>
+				</tr>
+				<tr>
+					<td>Place</td>
+					<td><%=details[0].place%></td>
+				</tr>
+				<tr>
+					<td>History And Culture</td>
+					<td><%=details[0].history%></td>
+				</tr>
+				<tr>
+					<td>About</td>
+					<td><%=details[0].about%></td>
+				</tr>
+				<tr>
+					<td>Travel Agency</td>
+					<td><%=details[0].travel_agency%></td>
+				</tr>
+				<tr>
+					<td>Cost</td>
+					<td><%=details[0].cost%></td>
+				</tr>
+				<tr>
+					<tr>
+					<td>Contact</td>
+					<td><%=details[0].contact%></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+		<br>
+	<button><a href="/scout_home/place_list">Back</a></button>
+	<button><a href="/logout">Logout</a> </button>
+
+</body>
+</html>

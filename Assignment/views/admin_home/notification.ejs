@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" type="text/css" href="/abc/css/style.css">
+</head>
+
+<style>
+	fieldset {
+  		background-color: #eeeeee;
+  		width: 500px;
+	}
+</style>
+
+<body>
+	<h2> Notification %></h2><br>
+
+	
+	<%
+	 	reqst.forEach( function(place_req){ %>
+ 			<fieldset>
+
+ 				<h4>Request for add place</h4>
+				<table>
+					<tr>
+						<td>Country Name</td>
+						<td></td>
+						<td><%= place_req.country %></td>
+					</tr>
+
+					<tr>
+						<td>Travel Agency</td>
+						<td></td>
+						<td><%= place_req.travel_agency %></td>
+					</tr>
+
+					<tr>
+						<td>Cost</td>
+						<td></td>
+						<td><%= place_req.cost %></td>
+					</tr>
+
+					<tr>
+						<td>Contact</td>
+						<td></td>
+						<td><%= place_req.contact %></td>
+					</tr>
+
+					<tr>
+						<td><a href="">Details</a> |</td>
+						<td><a href="">Acept</a> |</td>
+						<td><a href="">Cancel</a></td>
+					</tr>
+
+				</table>
+			</fieldset>
+			<br>
+		<%
+			}); 
+		%>	
+
+		<a href="/admin_home">Back</a>  |
+	<a href="/logout">logout</a> <br><br>	
+
+</body>
+</html>
