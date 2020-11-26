@@ -26,7 +26,7 @@ router.post('/add_country', (req, res)=>{
 		place: req.body.place,
 		history: req.body.history,
 		about: req.body.about,
-		trevel_agent: req.body.trevel_agent,
+		travel_agency: req.body.travel_agency,
 		cost: req.body.cost,
 		contact: req.body.contact
 	};
@@ -68,6 +68,88 @@ router.get('/notification/details/:place', (req, res)=>{
 	});
 	
 });
+
+router.get('/notification_add/accept/:place', (req, res)=>{
+	
+	var place = {c_name: req.params.place};
+	
+	place_reqModel.getById(place, function(status){
+		var place_add = {
+			username: 		req.session.user.username,
+			country: 		status[0].country_name,
+			place: 			status[0].place,
+			history: 		status[0].history,
+			about: 			status[0].about,
+			travel_agency: 	status[0].travel_agency,
+			cost: 			status[0].cost,
+			contact: 		status[0].contact
+			
+		}
+		countryModel.insert(place_add,function(results){
+			if (results == false) {
+				place_reqModel.delete(place,function(place_rqst_delele){
+					res.redirect('/admin_home/notification');
+	
+				});
+				
+			}
+			
+		});
+		
+	});
+	
+});
+
+
+router.get('/notification_edit/accept/:place', (req, res)=>{
+	
+	var place = {c_name: req.params.place};
+	
+	place_reqModel.getById(place, function(status){
+		var place_update = {
+			username: 		req.session.user.username,
+			country: 		status[0].country_name,
+			place: 			status[0].place,
+			history: 		status[0].history,
+			about: 			status[0].about,
+			travel_agency: 	status[0].travel_agency,
+			cost: 			status[0].cost,
+			contact: 		status[0].contact
+			
+		}
+		countryModel.update(place,place_update,function(results){
+			console.log(results);
+			if (results == false) {
+				place_reqModel.delete(place,function(place_rqst_delele){
+					res.redirect('/country/country_list');
+	
+				});
+				
+			}
+			
+		});
+		
+	});
+	
+});
+router.get('/notification/cancel/:place', (req, res)=>{
+	
+	var place = {c_name: req.params.place};
+	
+	
+				place_reqModel.delete(place,function(place_rqst_delele){
+					res.redirect('/admin_home/notification');
+	
+				});
+				
+			
+			
+	
+	
+});
+
+
+
 
 router.get('/edit/:place', (req, res)=>{
 

@@ -16,7 +16,7 @@ module.exports= {
 	},
 
 	insert: function(country_create, callback){
-		var sql = "INSERT INTO place(username, country, place, history, about,travel_agency,cost,contact) VALUES ('"+country_create.username+"', '"+country_create.country+"','"+country_create.place+"','"+country_create.history+"','"+country_create.about+"','"+country_create.trevel_agent+"',"+country_create.cost+",'"+country_create.contact+"')";
+		var sql = "INSERT INTO place(username, country, place, history, about,travel_agency,cost,contact) VALUES ('"+country_create.username+"', '"+country_create.country+"','"+country_create.place+"','"+country_create.history+"','"+country_create.about+"','"+country_create.travel_agency+"',"+country_create.cost+",'"+country_create.contact+"')";
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
 				callback(true);
@@ -31,7 +31,7 @@ module.exports= {
 		var sql = "UPDATE `place` SET `country`='"+country_update.country+"',`place`='"+country_update.place+"', `history`='"+country_update.history+"',`about`='"+country_update.about+"',`travel_agency`='"+country_update.travel_agency+"',`cost`='"+country_update.cost+"',`contact`='"+country_update.contact+"' WHERE place='"+country.c_name+"'";
 		db.getResults(sql, function(results){
 			if(results.length > 0 ){
-				callback(results);
+				callback(true);
 			}else{
 				callback(false);
 			}

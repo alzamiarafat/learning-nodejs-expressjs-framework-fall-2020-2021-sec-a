@@ -75,6 +75,7 @@ router.post('/place_req', (req, res)=>{
 		recevier: req.body.recevier,
 		sender: req.body.username,
 		country: req.body.country,
+		place: req.body.place,
 		history: req.body.history,
 		about: req.body.about,
 		travel_agency: req.body.travel_agency,
@@ -83,7 +84,10 @@ router.post('/place_req', (req, res)=>{
 
 	};
 	place_reqModel.insert(place_req, function(status){
-		req.redirect('/scout_home');
+		if (status == false) {
+			res.redirect('/scout_home');
+		}
+		
 	});
 });
 router.get('/place_list', (req, res)=>{
@@ -130,7 +134,7 @@ router.post('/edit/:place', (req, res)=>{
 		contact: req.body.contact,
 	};
 
-	place_reqModel.update(place,country_update, function(status){
+	place_reqModel.update(country_update, function(status){
 		console.log(status);
 		
 		if(status == false){
