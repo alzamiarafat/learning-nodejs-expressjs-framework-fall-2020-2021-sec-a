@@ -38,7 +38,9 @@ router.post('/', (req, res)=>{
 			/*countryModel.getAll(function(results){
 				res.redirect('/user_home', {countries: results});
 			});*/
+			
 			res.redirect('/user_home');
+			console.log(status[0].username);
 		}
 
 		else{

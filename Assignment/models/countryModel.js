@@ -48,5 +48,13 @@ module.exports= {
 			}
 		});
 
+	},
+	checklist: function(list, callback){
+		var sql = "select * from place WHERE customer_name = '"+list.username+"' and place= '"+list.place+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+
 	}
+
 }

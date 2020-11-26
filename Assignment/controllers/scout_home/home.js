@@ -7,6 +7,7 @@ const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
 	if(req.session.user == null){
+		console.log(req.session.user);
 		res.redirect('/login');
 	}else{
 		next();
@@ -21,7 +22,7 @@ router.get('/', (req, res)=>{
 
 router.get('/profile', (req, res)=>{
 
-	var uname = {username: req.cookies.uname };
+	var uname = req.session.user;
 	userModel.getById(uname, function(results){
 		
 		res.render('scout_home/profile', {profile: results});
