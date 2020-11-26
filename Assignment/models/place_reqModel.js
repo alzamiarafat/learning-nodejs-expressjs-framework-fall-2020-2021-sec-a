@@ -24,6 +24,14 @@ module.exports= {
 
 	},
 
+	getById: function(country, callback){
+		var sql = "select * from place_reqst WHERE place = '"+country.c_name+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+
+	},
+
 	count: function(user,callback){
 		var sql = "SELECT * FROM `place_reqst` WHERE admin_name='"+user.name+"' and status='pending'";
 		db.getResults(sql, function(results){

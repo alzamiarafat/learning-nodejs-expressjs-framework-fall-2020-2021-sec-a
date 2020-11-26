@@ -13,31 +13,38 @@
 </style>
 
 <body>
-	<h2> Notification %></h2><br>
+	<h2> Notification %></h2>
 
 	
 	<%
-	 	reqst.forEach( function(place_req){ %>
+		 reqst.forEach( function(place_req){ %>
+			<% if(place_req.action === 'add') { %>
  			<fieldset>
+				
 
  				<h4>Request for add place</h4>
 				<table>
 					<tr>
+						<td>Scout Name</td>
+						<td></td>
+						<td><%= place_req.scout_name %></td>
+					</tr>
+					<tr>
 						<td>Country Name</td>
 						<td></td>
-						<td><%= place_req.country %></td>
+						<td><%= place_req.country_name %></td>
 					</tr>
 
 					<tr>
-						<td>Travel Agency</td>
+						<td>Place</td>
 						<td></td>
-						<td><%= place_req.travel_agency %></td>
+						<td><%= place_req.place %></td>
 					</tr>
 
 					<tr>
 						<td>Cost</td>
 						<td></td>
-						<td><%= place_req.cost %></td>
+						<td><%= place_req.cost %> BDT</td>
 					</tr>
 
 					<tr>
@@ -47,13 +54,60 @@
 					</tr>
 
 					<tr>
-						<td><a href="">Details</a> |</td>
-						<td><a href="">Acept</a> |</td>
+						<td><a href="/country/notification/details/<%= place_req.place %>">Details..</a></td>
+						<td><a href="">Accept</a> |</td>
 						<td><a href="">Cancel</a></td>
 					</tr>
-
 				</table>
 			</fieldset>
+			<% 
+				}
+					%>
+					<% if(place_req.action === 'update') { %>
+						<fieldset>
+						   
+		   
+							<h4>Request for edit place</h4>
+						   <table>
+							   <tr>
+								   <td>Scout Name</td>
+								   <td></td>
+								   <td><%= place_req.scout_name %></td>
+							   </tr>
+							   <tr>
+								   <td>Country Name</td>
+								   <td></td>
+								   <td><%= place_req.country_name %></td>
+							   </tr>
+		   
+							   <tr>
+								   <td>Place</td>
+								   <td></td>
+								   <td><%= place_req.place %></td>
+							   </tr>
+		   
+							   <tr>
+								   <td>Cost</td>
+								   <td></td>
+								   <td><%= place_req.cost %> BDT</td>
+							   </tr>
+		   
+							   <tr>
+								   <td>Contact</td>
+								   <td></td>
+								   <td><%= place_req.contact %></td>
+							   </tr>
+		   
+							   <tr>
+								   <td><a href="/country/notification/details/<%= place_req.place %>">Details..</a></td>
+								   <td><a href="">Accept</a> |</td>
+								   <td><a href="">Cancel</a></td>
+							   </tr>
+						   </table>
+					   </fieldset>
+					   <% 
+						   }
+							   %>
 			<br>
 		<%
 			}); 

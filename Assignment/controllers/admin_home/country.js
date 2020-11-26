@@ -1,9 +1,11 @@
 const express 		= require('express');
 const countryModel	= require.main.require('./models/countryModel');
+const place_reqModel = require.main.require('./models/place_reqModel');
+
 const router 		= express.Router();
 
 router.get('*',  (req, res, next)=>{
-	if(req.cookies['uname'] == null){
+	if(req.session.user == null){
 		res.redirect('/login');
 	}else{
 		next();
@@ -11,7 +13,7 @@ router.get('*',  (req, res, next)=>{
 });
 router.get('/add_country', (req, res)=>{
 
-	res.render('country/add_country', {uname: req.cookies.uname });
+	res.render('country/add_country', {uname: req.session.user });
 
 });
 
@@ -50,6 +52,17 @@ router.get('/details/:place', (req, res)=>{
 	var place = {c_name: req.params.place};
 	
 	countryModel.getById(place, function(status){
+		res.render('country/details', {details: status});
+		
+	});
+	
+});
+
+router.get('/notification/details/:place', (req, res)=>{
+	
+	var place = {c_name: req.params.place};
+	
+	place_reqModel.getById(place, function(status){
 		res.render('country/details', {details: status});
 		
 	});

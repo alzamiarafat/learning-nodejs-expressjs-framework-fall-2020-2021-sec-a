@@ -16,7 +16,7 @@ module.exports= {
 	},
 
 	insert: function(country_create, callback){
-		var sql = "INSERT INTO place(username, country, place, history, about,travel_agency,cost,contact) VALUES ('"+country_create.username+"', '"+country_create.country+"','"+country_create.place+"','"+country_create.history+"','"+country_create.about+"','"+country_create.trevel_agent+"','"+country_create.cost+"','"+country_create.contact+"')";
+		var sql = "INSERT INTO place(username, country, place, history, about,travel_agency,cost,contact) VALUES ('"+country_create.username+"', '"+country_create.country+"','"+country_create.place+"','"+country_create.history+"','"+country_create.about+"','"+country_create.trevel_agent+"',"+country_create.cost+",'"+country_create.contact+"')";
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
 				callback(true);
