@@ -114,6 +114,20 @@ router.get('/unlike/:place', (req, res)=>{
 	
 });
 
+router.get('/search', (req, res)=>{
+	res.render('user_home/search');
+});
+
+router.post('/search', (req, res) => {
+	var search = { search: req.body.search};
+
+    countryModel.search(search, (result) => {
+        res.json({
+            results: result
+        });
+    });
+});
+
 
 
 module.exports = router;

@@ -71,6 +71,17 @@ module.exports= {
 		});
 
 	},
+	search: function(place, callback){
+		var sql = "SELECT * FROM `place` WHERE place='"+place.search+"' or country='"+place.search+"'";
+		db.getResults(sql, function(results){
+			if(results.length >0 ){
+				callback(results);
+			}else{
+				callback(false);
+			}
+		});
+
+	},
 	checklist: function(list, callback){
 		var sql = "select * from place WHERE customer_name = '"+list.username+"' and status= 'like'";
 		db.getResults(sql, function(results){

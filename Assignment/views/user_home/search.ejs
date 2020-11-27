@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        td{
+            text-align: center;
+            padding: 2px 14px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>Search Place</legend>
+        <br>
+        <form>
+            <input type="text" name="mytext" id="mytext" placeholder="Search by country/place">
+            <input type="button" id="ajaxSearch" value="Search">
+        </form>
+        <br>
+        <table border="1" id="myTable">
+            <tr>
+                <td>Country Name</td>
+                <td>Place Name</td>
+                <td>Travel Agency</td>
+                <td>Cost</td>
+                <td>Contact</td>
+            </tr>
+            
+        </table>
+    </fieldset>
+    <p class="see"></p>
+    <p class="pee"></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#ajaxSearch").click((e) => {
+                e.preventDefault();
+                var search = $("#mytext").val();
+                $(this).closest('myTable').remove();
+                $.ajax({
+                    url: "/user_home/search",
+                    data: { search: search },
+                    method: "POST",
+                    contentType: "application/x-www-form-urlencoded",
+                    success: function(data){
+                        var results = data.results;
+                        $(".row").remove();
+                        for(var i=0; i<results.length; i++){
+                            $("#myTable").append(
+                                "<tr class='row'>"+
+                                    "<td>"+results[i].country+"</td>"+
+                                    "<td>"+results[i].place+"</td>"+
+                                    "<td>"+results[i].travel_agency+"</td>"+
+                                    "<td>"+results[i].cost+"</td>"+
+                                    "<td>"+results[i].contact+"</td>"+
+                                +"</tr>"
+                            );
+                        }
+                        // $(".see").html(results[0].username);
+                        // $(".pee").html(results[0].salary);
+                        
+                    }, error: function(err) {
+                        alert(err);
+                    }
+                });
+                
+                
+            });
+        });
+    </script>
+</body>
+</html>
