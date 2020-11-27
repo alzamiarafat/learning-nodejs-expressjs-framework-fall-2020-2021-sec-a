@@ -38,6 +38,28 @@ module.exports= {
 		});
 
 	},
+	likeInsert:function(update, callback){
+		var sql = "UPDATE `place` SET `customer_name`='"+update.username+"',`status`='like' WHERE place='"+update.place+"'";
+		db.getResults(sql, function(results){
+			if(results.length > 0 ){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+
+	},
+	unlikeInsert:function(update, callback){
+		var sql = "UPDATE `place` SET `customer_name`='"+update.username+"',`status`='unlike' WHERE place='"+update.place+"'";
+		db.getResults(sql, function(results){
+			if(results.length > 0 ){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+
+	},
 	delete: function(country_name, callback){
 		var sql = "DELETE FROM place WHERE place='"+country_name.place+"'";
 		db.getResults(sql, function(results){
@@ -50,7 +72,7 @@ module.exports= {
 
 	},
 	checklist: function(list, callback){
-		var sql = "select * from place WHERE customer_name = '"+list.username+"' and place= '"+list.place+"'";
+		var sql = "select * from place WHERE customer_name = '"+list.username+"' and status= 'like'";
 		db.getResults(sql, function(results){
 			callback(results);
 		});

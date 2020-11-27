@@ -77,22 +77,14 @@ router.get('/details/:place', (req, res)=>{
 	
 });
 router.get('/checklist', (req, res)=>{
-	
-	var user = req.session.user;
-	
-	checklistModel.getById(user, function(status){
-		console.log(status);
+
 		var list ={
-			username: status[0].username,
-			place: status[0].place
+			username: req.session.user.username
 		}
 		countryModel.checklist(list, function(results){
 			res.render('user_home/checklist', {checklist: results});
 
 		});
-		
-		
-	});
 	
 });
 router.get('/like/:place', (req, res)=>{
@@ -102,12 +94,26 @@ router.get('/like/:place', (req, res)=>{
 		username: req.session.user.username
 	};
 	
-	checklistModel.insert(place, function(status){
+	countryModel.likeInsert(place, function(status){
 		res.redirect('/user_home/checklist');
 		
 	});
 	
 });
+router.get('/unlike/:place', (req, res)=>{
+	
+	var place = {
+		place: req.params.place,
+		username: req.session.user.username
+	};
+	
+	countryModel.unlikeInsert(place, function(status){
+		res.redirect('/user_home/checklist');
+		
+	});
+	
+});
+
 
 
 module.exports = router;
