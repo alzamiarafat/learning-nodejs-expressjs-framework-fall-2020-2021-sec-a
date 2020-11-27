@@ -6,6 +6,8 @@ module.exports= {
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
 				callback(results);
+			} else{
+				callback(false);
 			}
 		});
 	},

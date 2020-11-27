@@ -10,6 +10,9 @@
 		<div class="login-page">
   			<div class="form">
     			<form class="login-form">
+					<% if(length == false) { %>
+						<span style="color: rgb(206, 49, 49); font-size: 14px;">*<%= error %></span>
+				   <%  } %>
 					  <input type="text" name="username" placeholder="username"/>
 					  <% if(username != null) { %>
 						<span style="color: rgb(206, 53, 53); font-size: 14px;">*<%= username.msg %></span>
